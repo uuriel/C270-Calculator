@@ -33,6 +33,13 @@ def calculate():
         else:
             result = "Cannot divide by zero."
             operation_str = f"{a} / {b} = {result}"
+    elif operation == 'modulus':
+        if b != 0:
+            result = a % b
+            operation_str = f"{a} % {b} = {result}"
+        else:
+            result = "Cannot perform modulus by zero."
+            operation_str = f"{a} % {b} = {result}"
     # Store the calculation in history
     calculations.append(operation_str)
     return render_template('index.html', result=result, history=calculations)
