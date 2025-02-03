@@ -2,24 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="/static/style.css"> <!-- If you have CSS -->
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Calculator App</h1>
-    <form action="/calculate" method="post">
-        <input type="number" name="a" required="required" placeholder="Enter first number" />
-        <input type="number" name="b" required="required" placeholder="Enter second number" />
-        <select name="operation">
-            <option value="add">Add</option>
-            <option value="subtract">Subtract</option>
-            <option value="multiply">Multiply</option>
-            <option value="divide">Divide</option>
-        </select>
-        <button type="submit">Calculate</button>
-    </form>
-    {% if result %}
-        <h2>Result: {{ result }}</h2>
-    {% endif %}
+    <div class="container">
+        <h1>Calculator</h1>
+        <form action="/calculate" method="post" class="calculator-form">
+            <input type="number" name="a" required placeholder="Enter first number">
+            <select name="operation">
+                <option value="add">Add</option>
+                <option value="subtract">Subtract</option>
+                <option value="multiply">Multiply</option>
+                <option value="divide">Divide</option>
+            </select>
+            <input type="number" name="b" required placeholder="Enter second number">
+            <button type="submit">Calculate</button>
+        </form>
+        <div class="result">
+            <h2>Result: {{ result }}</h2>
+        </div>
+        <div class="history">
+            <h3>History:</h3>
+            <ul>
+                {% for calc in history %}
+                <li>{{ calc }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

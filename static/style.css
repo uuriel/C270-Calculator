@@ -1,22 +1,68 @@
+/* style.css */
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-}
-
-h1, h2 {
+    background-color: #f7f7f7;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-form {
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
     background: #fff;
     padding: 20px;
-    border: 1px solid #ccc;
-    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-input, select, button {
+h1 {
+    text-align: center;
+}
+
+.calculator-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.calculator-form input[type="number"],
+.calculator-form select {
+    flex: 1 1 40%;
+    margin: 5px;
     padding: 10px;
-    margin-top: 10px;
+    font-size: 16px;
+}
+
+.calculator-form button {
+    flex: 1 1 40%;
+    margin: 5px;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.calculator-form button:hover {
+    background-color: #004494;
+}
+
+.result h2, .history h3 {
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+}
+
+.history ul {
+    list-style: none;
+    padding: 0;
+}
+
+.history li {
+    margin: 5px;
+    padding: 5px;
+    background-color: #eee;
 }
