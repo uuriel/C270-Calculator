@@ -33,9 +33,16 @@ def calculate():
         else:
             result = "Cannot divide by zero."
             operation_str = f"{a} / {b} = {result}"
+    elif operation == 'modulus':
+        if b != 0:
+            result = a % b
+            operation_str = f"{a} % {b} = {result}"
+        else:
+            result = "Cannot perform modulus by zero."
+            operation_str = f"{a} % {b} = {result}"
     # Store the calculation in history
     calculations.append(operation_str)
     return render_template('index.html', result=result, history=calculations)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3000)
+    app.run(debug=True, host='0.0.0.0', port=3000)
