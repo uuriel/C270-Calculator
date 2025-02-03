@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- If you have CSS -->
+</head>
+<body>
+    <h1>Calculator App</h1>
+    <form action="/calculate" method="post">
+        <input type="number" name="a" required="required" placeholder="Enter first number" />
+        <input type="number" name="b" required="required" placeholder="Enter second number" />
+        <select name="operation">
+            <option value="add">Add</option>
+            <option value="subtract">Subtract</option>
+            <option value="multiply">Multiply</option>
+            <option value="divide">Divide</option>
+        </select>
+        <button type="submit">Calculate</button>
+    </form>
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
