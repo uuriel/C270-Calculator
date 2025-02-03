@@ -211,3 +211,14 @@ nohup: ignoring input
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 211-788-849
+ * Detected change in '/home/lucas/C270-Calculator/app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 211-788-849
+172.17.0.2 - - [03/Feb/2025 17:32:09] "GET / HTTP/1.1" 200 -
+172.17.0.2 - - [03/Feb/2025 17:32:21] "GET / HTTP/1.1" 200 -
+172.17.0.2 - - [03/Feb/2025 17:35:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [03/Feb/2025 17:58:07] "POST /calculate HTTP/1.1" 200 -
+127.0.0.1 - - [03/Feb/2025 17:58:07] "GET /static/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [03/Feb/2025 17:58:12] "POST /calculate HTTP/1.1" 200 -
+127.0.0.1 - - [03/Feb/2025 17:58:12] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
