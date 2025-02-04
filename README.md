@@ -1,27 +1,62 @@
-import requests
+from flask import Flask, request, render_template, jsonify
 
-# Define the URL of the Flask app
-url = "http://localhost:3000/calculate"
+app = Flask(__name__)
 
-# Define the test data
-data = {
-    'a': 15,
-    'b': 4,
-    'operation': 'modulus'
-}
+# In-memory storage for calculations
+calculations = []
 
-# Send a POST request to the Flask app
-response = requests.post(url, data=data)
+@app.route('/')
+def home():
+    # Pass the calculations list to the template to display history
+    return render_template('index.html', history=calculations)
 
-# Check if the request was successful
-if response.status_code == 200:
-    # Parse the JSON response
-    result = response.json()
+@app.route('/calculate', methods=['POST'])
+def calculate():
+    try:
+        a = request.form.get('a', type=float)
+        b = request.form.get('b', type=float)
+        operation = request.form.get('operation')
+        
+        # Initialize result and operation_str
+        result = None
+        operation_str = ""
+        
+        if operation == 'add':
+            result = a + b
+            operation_str = f"{a} + {b} = {result}"
+        elif operation == 'subtract':
+            result = a - b
+            operation_str = f"{a} - {b} = {result}"
+        elif operation == 'multiply':
+            result = a * b
+            operation_str = f"{a} * {b} = {result}"
+        elif operation == 'divide':
+            if b != 0:
+                result = a / b
+                operation_str = f"{a} / {b} = {result}"
+            else:
+                result = "Cannot divide by zero."
+                operation_str = f"{a} / {b} = {result}"
+        elif operation == 'modulus':
+            if b != 0:
+                result = a % b
+                operation_str = f"{a} % {b} = {result}"
+            else:
+                result = "Cannot perform modulus by zero."
+                operation_str = f"{a} % {b} = {result}"
+        else:
+            result = "Invalid operation"
+            operation_str = f"{a} {operation} {b} = {result}"
+        
+        # Store the calculation in history
+        calculations.append(operation_str)
+
+        # Return the result and history as a JSON response
+        return jsonify(result=result, history=calculations)
     
-    # Check if the result is as expected
-    if result['result'] == 3.0:
-        print("✅ Modulus Test Passed")
-    else:
-        print(f"❌ Modulus Test Failed: Expected 3.0, got {result['result']}")
-else:
-    print(f"❌ Request Failed: Status Code {response.status_code}")
+    except Exception as e:
+        # In case of unexpected errors, return a JSON response with the error
+        return jsonify(result=f"Error: {str(e)}", history=calculations)
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=3000)
