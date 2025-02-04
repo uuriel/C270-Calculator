@@ -30,7 +30,7 @@ docker build -t calculatorapp .
 
 # Run the Docker container
 echo "Running Docker container for calculator app..."
-docker run -t -d -p 3000:3000 --name calculatorapp_running calculatorapp
+docker run -t -d -p 3000:3000 --name jenkins_server calculatorapp
 
 # Show running containers
 docker ps -a
